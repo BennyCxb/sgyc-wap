@@ -9,7 +9,7 @@
       <x-input title="密&nbsp;&nbsp;&nbsp;码" v-model="password" type="password"></x-input>
     </group>
     <div style="padding:15px;">
-      <x-button type="primary">登录</x-button>
+      <x-button type="primary" @click.native="login">登录</x-button>
     </div>
   </div>
 </template>
@@ -25,15 +25,34 @@ export default {
   },
   data () {
     return {
-      msg: 'test1',
       username: '',
       password: ''
     }
   },
   methods: {
     login () {
-      console.log(1)
+      let params = {
+        UserName: this.username,
+        UserPwd: this.password,
+        FProject: 1
+      }
+      this.$api.api.login(params).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
     }
+    // login () {
+    //   let params = {
+    //     UserName: this.username,
+    //     UserPwd: this.password,
+    //     FProject: 1
+    //   }
+    //   AjaxPlugin.$http.post('http://39.108.115.189:9001/api/Login/GetUserInfo', params)
+    //     .then(res => {
+    //       console.log(res)
+    //     })
+    // }
   }
 }
 </script>
