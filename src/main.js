@@ -6,21 +6,12 @@ import router from './router'
 import VueRouter from 'vue-router'
 import App from './App'
 import api from './api'
-import { AjaxPlugin } from 'vux'
-
-// import Home from './components/HelloFromVux'
+import { AjaxPlugin, LoadingPlugin, ToastPlugin } from 'vux'
 
 Vue.use(VueRouter)
 Vue.use(AjaxPlugin)
-
-// const routes = [{
-//   path: '/',
-//   component: Home
-// }]
-//
-// const router = new VueRouter({
-//   routes
-// })
+Vue.use(LoadingPlugin)
+Vue.use(ToastPlugin)
 
 FastClick.attach(document.body)
 
@@ -29,7 +20,9 @@ Vue.config.productionTip = false
 Vue.prototype.$api = api
 
 /* eslint-disable no-new */
-new Vue({
+let myThis = new Vue({
   router,
   render: h => h(App)
 }).$mount('#app-box')
+
+export default myThis

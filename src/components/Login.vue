@@ -31,6 +31,10 @@ export default {
   },
   methods: {
     login () {
+      var self = this
+      // this.$vux.loading.show({
+      //   text: 'Loading'
+      // })
       let params = {
         UserName: this.username,
         UserPwd: this.password,
@@ -38,21 +42,13 @@ export default {
       }
       this.$api.api.login(params).then(res => {
         console.log(res)
+        // self.$vux.loading.hide()
+        self.$router.push({path: '/home'})
       }).catch(error => {
+        self.$vux.loading.hide()
         console.log(error)
       })
     }
-    // login () {
-    //   let params = {
-    //     UserName: this.username,
-    //     UserPwd: this.password,
-    //     FProject: 1
-    //   }
-    //   AjaxPlugin.$http.post('http://39.108.115.189:9001/api/Login/GetUserInfo', params)
-    //     .then(res => {
-    //       console.log(res)
-    //     })
-    // }
   }
 }
 </script>

@@ -14,6 +14,10 @@ export default new Router({
     {
       path: '/login',
       component: resolve => require(['../components/Login.vue'], resolve)
+    },
+    {
+      path: '/home',
+      component: resolve => require(['../components/HelloFromVux.vue'], resolve)
     }
   ]
 })

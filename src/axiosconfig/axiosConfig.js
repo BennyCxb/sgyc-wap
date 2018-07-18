@@ -1,6 +1,8 @@
 import Vue from 'vue'
-import { AjaxPlugin, Msg, Loading } from 'vux'
+import { AjaxPlugin } from 'vux'
 import qs from 'qs'
+import _myThis from '@/main.js'
+
 // 响应时间
 AjaxPlugin.$http.defaults.timeout = 5 * 1000
 // 配置cookie
@@ -12,38 +14,36 @@ Vue.prototype.$static = ''
 
 // 配置接口地址
 AjaxPlugin.$http.defaults.baseURL = process.env.API_ROOT
-// var loadingInstance = Loading
 // POST传参序列化(添加请求拦截器)
 AjaxPlugin.$http.interceptors.request.use(
   config => {
-    // Loading.show({
-    //   text: '数据加载中，请稍后...'
-    // })
+    _myThis.$vux.loading.show({
+      text: '数据加载中，请稍后...'
+    })
     if (config.method === 'post') {
       config.data = qs.stringify(config.data)
     }
     return config
   },
   err => {
-    // loadingInstance.hide()
-    Msg.error('请求错误')
+    _myThis.$vux.loading.hide()
+    _myThis.$vux.toast.text('请求错误')
     return Promise.reject(err)
   }
 )
 // 返回状态判断(添加响应拦截器)
 AjaxPlugin.$http.interceptors.response.use(
   res => {
-    if (res.data.code === 200) {
-      // loadingInstance.hide()
+    if (res.data.code === 1) {
+      _myThis.$vux.loading.hide()
       return res
     } else {
-      // loadingInstance.hide()
-      Msg.error(res.data.msg)
+      _myThis.$vux.toast.text(res.data.message)
     }
   },
   err => {
-    // loadingInstance.hide()
-    Msg.error('请求失败，请稍后再试')
+    _myThis.$vux.loading.hide()
+    _myThis.$vux.toast.text('请求失败，请稍后再试')
     return Promise.reject(err)
   }
 )
