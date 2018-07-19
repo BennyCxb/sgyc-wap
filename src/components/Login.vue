@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Group, XInput, XButton } from 'vux'
+import { Group, XInput, XButton, cookie } from 'vux'
 export default {
   name: 'login',
   components: {
@@ -32,20 +32,16 @@ export default {
   methods: {
     login () {
       var self = this
-      // this.$vux.loading.show({
-      //   text: 'Loading'
-      // })
       let params = {
         UserName: this.username,
         UserPwd: this.password,
         FProject: 1
       }
-      this.$api.api.login(params).then(res => {
-        console.log(res)
-        // self.$vux.loading.hide()
+      this.$api.sbsh.login(params).then(res => {
+        cookie.set('TZManage', res.object, {expires: 12})
         self.$router.push({path: '/home'})
       }).catch(error => {
-        self.$vux.loading.hide()
+        // self.$vux.loading.hide()
         console.log(error)
       })
     }

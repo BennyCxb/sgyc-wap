@@ -17,7 +17,7 @@ export default new Router({
     },
     {
       path: '/home',
-      component: resolve => require(['../components/HelloFromVux.vue'], resolve)
+      component: resolve => require(['../components/home.vue'], resolve)
     }
   ]
 })

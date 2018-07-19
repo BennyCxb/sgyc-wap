@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { AjaxPlugin } from 'vux'
+import { AjaxPlugin, cookie } from 'vux'
 import qs from 'qs'
 import _myThis from '@/main.js'
 
@@ -20,6 +20,10 @@ AjaxPlugin.$http.interceptors.request.use(
     _myThis.$vux.loading.show({
       text: '数据加载中，请稍后...'
     })
+    const token = cookie.get('TZManage')
+    if (token) {
+      config.headers.common['Authorization'] = 'Bearer ' + token
+    }
     if (config.method === 'post') {
       config.data = qs.stringify(config.data)
     }
