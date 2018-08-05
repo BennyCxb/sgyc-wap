@@ -8,9 +8,15 @@ import router from './router'
 import VueRouter from 'vue-router'
 import App from './App'
 import api from './api'
-import { AjaxPlugin, LoadingPlugin, ToastPlugin } from 'vux'
+import { AjaxPlugin, LoadingPlugin, ToastPlugin, XHeader } from 'vux'
+import './assets/iconfont/iconfont.css'
 // import _ from 'vue-lodash'
 import _ from 'lodash'
+// import VueLodash from 'vue-lodash'
+
+// const options = { name: 'lodash' } // customize the way you want to call it
+
+// Vue.use(VueLodash, options) // options is optional
 // import VueLodash from 'vue-lodash'
 
 Vue.use(Vuex)
@@ -18,6 +24,7 @@ Vue.use(VueRouter)
 Vue.use(AjaxPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
+Vue.component('x-header', XHeader)
 Vue.prototype._ = _
 // const options = { name: 'lodash' } // customize the way you want to call it
 // Vue.use(VueLodash, options) // options is optional

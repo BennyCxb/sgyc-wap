@@ -22,17 +22,19 @@
       <cell
         :title="items.title"
         is-link
+        :link="items.url"
         :border-intent="false"
         :arrow-direction="items.subs ? (items.showContent ? 'up' : 'down') : 'right'"
         @click.native="items.showContent = !items.showContent">
       </cell>
 
       <template v-if="items.showContent">
-        <cell-box l v-for="(item, index) in items.subs"
+        <cell-box v-for="(item, index) in items.subs"
                   :key="index"
                   :border-intent="false"
                   class="sub-item"
                   :class="items.showContent?'animate':''"
+                  :link="item.index"
                   is-link>
           {{item.title}}
         </cell-box>
