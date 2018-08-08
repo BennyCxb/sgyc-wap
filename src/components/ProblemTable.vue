@@ -40,7 +40,10 @@
                 <selector title="审核状态" direction="rtl" :options="statusList" v-model="form.FStatus"></selector>
               </group>
               <box gap="10px 10px">
-                <x-button type="primary">搜索</x-button>
+                <x-button @click.native="resetSearch">重置</x-button>
+              </box>
+              <box gap="10px 10px">
+                <x-button type="primary" :show-loading="showLoading" @click.native="getProblemList">搜索</x-button>
               </box>
             </div>
           </popup>
@@ -54,54 +57,63 @@
               <!--<x-input v-model="value" placeholder="项目名称"></x-input>-->
             <!--</group>-->
             <search
-              @result-click="resultClick"
-              @on-change="getResult"
               v-model="form.FBillNo"
               position="absolute"
               auto-scroll-to-top
               top="46px"
-              @on-focus="onFocus"
-              @on-cancel="onCancel"
-              @on-submit="onSubmit"
-              ref="search"></search>
+              @on-cancel="getProblemList"
+              @on-submit="getProblemList"
+              ref="search">
+            </search>
           </flexbox-item>
         </flexbox>
 
       </div>
-      <group>
-        <cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>
-      </group>
-      <!--<x-table :cell-bordered="false" style="background-color:#fff;">-->
-        <!--<thead>-->
-        <!--<tr>-->
-          <!--<th>Product</th>-->
-          <!--<th>Price</th>-->
-          <!--<th>Quantity</th>-->
-          <!--<th>Quantity</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr>-->
-          <!--<td>Apple</td>-->
-          <!--<td>$1.25</td>-->
-          <!--<td> x 1</td>-->
-          <!--<td> x 1</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td>Banana</td>-->
-          <!--<td>$1.20</td>-->
-          <!--<td> x 2</td>-->
-          <!--<td> x 2</td>-->
-        <!--</tr>-->
+      <!--<group>-->
+        <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
+      <!--</group>-->
+      <x-table :cell-bordered="false" style="background-color:#fff; table-layout: fixed;">
+        <thead>
+        <tr>
+          <th>年份</th>
+          <th>行政区划</th>
+          <th>项目编号</th>
+          <th>线路名称</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item, i) in tableData" :key="i">
+          <td>{{item.FYear}}</td>
+          <td>{{item.FAgencyName}}</td>
+          <td>{{item.FBillNo}}</td>
+          <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FLineName}}</td>
+        </tr>
+        <tr v-if="!tableData.length">
+          <td colspan="4">暂无数据</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4">
+            <pagination :page-index="form.curr"
+                        :total="count"
+                        :page-size="form.pageSize"
+                        @change="pageChange">
+            </pagination>
+          </td>
+        </tr>
+        </tfoot>
+      </x-table>
+      <div class="text-center">
 
-        <!--</tbody>-->
-      <!--</x-table>-->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Datetime, Selector, Search } from 'vux'
+import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Tab, TabItem, Datetime, Selector, Search } from 'vux'
+import pagination from './pagination'
 export default {
   directives: {
     TransferDom
@@ -118,7 +130,10 @@ export default {
     Popup,
     Datetime,
     Selector,
-    Search
+    Search,
+    Tab,
+    TabItem,
+    pagination
   },
   data () {
     return {
@@ -130,8 +145,10 @@ export default {
       proList: [],
       statusList: [],
       tableData: [],
+      count: 0, // 总记录数
+      showLoading: false,
       form: {
-        FBillTypeID: this.$route.params.btid,
+        FBillTypeID: '',
         FBillNo: '',      // 问题编号
         FYear: '',        // 年份
         FMonth: '',       // 月份
@@ -140,7 +157,7 @@ export default {
         FProbType: '',    // 问题类型
         FStatus: '',      // 审核状态
         curr: 1,          // 当前页面
-        pageSize: 10,     // 每页显示个数
+        pageSize: 20,     // 每页显示个数
         strSortFiled: '',
         strSortType: ''
       }
@@ -154,32 +171,35 @@ export default {
       this.getEnumList('审核状态', 'statusList')
       this.getProblemList()
     },
+    /**
+     * 重置筛选条件
+     */
+    resetSearch () {
+      let FBillNo = this.form.FBillNo
+      this.form = Object.assign({}, {
+        FBillTypeID: this.$route.params.btid,
+        FBillNo: FBillNo,
+        FYear: '',
+        FMonth: '',
+        FAgencyValue: '',
+        FEdge: '',
+        FProbType: '',
+        FStatus: '',
+        curr: 1,
+        pageSize: 20,
+        strSortFiled: '',
+        strSortType: ''
+      })
+    },
     log (str1, str2 = '') {
       console.log(str1, str2)
     },
     change (value) {
       console.log('change', value)
     },
-    resultClick (item) {
-      window.alert('you click the result item: ' + JSON.stringify(item))
-    },
     onConfirm (val) {
       console.log('on-confirm arg', val)
       console.log('current value', this.value1)
-    },
-    onSubmit () {
-      this.$refs.search.setBlur()
-      this.$vux.toast.show({
-        type: 'text',
-        position: 'top',
-        text: 'on submit'
-      })
-    },
-    onFocus () {
-      console.log('on focus')
-    },
-    onCancel () {
-      console.log('on cancel')
     },
     /**
      * 获取行政区划
@@ -239,11 +259,17 @@ export default {
     },
     getProblemList () {
       let self = this
+      this.showLoading = true
       this.$api.sbsh.getProblemList(this.form).then(res => {
-        console.log(res)
+        // console.log(res)
+        self.showLoading = false
+        self.showScreen = false
         self.tableData = res.object
+        self.count = res.page.totalRecords
       }).catch(error => {
         console.log(error)
+        self.showLoading = false
+        self.showScreen = false
         self.$vux.toast.show({
           text: error.message
         })
@@ -252,6 +278,11 @@ export default {
     getResult (val) {
       console.log('on-change', val)
       this.results = val ? getResult(this.value) : []
+    },
+    // 从page组件传递过来的当前page
+    pageChange (page) {
+      this.form.curr = page
+      this.getProblemList()
     }
   },
   created () {
@@ -264,6 +295,7 @@ export default {
     } else if (billtypeId === 1000013) {
       this.title = '县级自查自纠问题点位'
     }
+    this.form.FBillTypeID = this.$route.params.btid
     this.init()
   }
 }
@@ -283,6 +315,7 @@ function getResult (val) {
 <style lang="less" scoped>
   @import '~vux/src/styles/close.less';
   .table-top {
+    height: 44px;
     padding: 0;
   }
 
