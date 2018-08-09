@@ -34,6 +34,22 @@ export default new Router({
     {
       path: '/ptable:bid',
       component: resolve => require(['../components/ProblemTable.vue'], resolve)
+    },
+    {
+      path: '/dtable:fid-:sid-:tid-:btid',
+      component: resolve => require(['../components/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/dtable:fid-:sid-:btid',
+      component: resolve => require(['../components/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/dtable:fid-:btid',
+      component: resolve => require(['../components/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/dtable',
+      component: resolve => require(['../components/ProjectTable.vue'], resolve)
     }
   ]
 })

@@ -1,14 +1,8 @@
 <template>
   <div>
-    <x-header>
+    <x-header :left-options="{backText: '登出'}">
       <span>四边三化</span>
-      <x-icon slot="overwrite-left" @click.native="showMenus = !showMenus" type="navicon"
-              :left-options="{showMore: true}" size="35"
-              style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
     </x-header>
-    <div v-transfer-dom>
-      <actionsheet :menus="menus" v-model="showMenus" show-cancel></actionsheet>
-    </div>
 
     <div class="vux-demo">
       <img class="logo" src="../assets/vux_logo.png">
@@ -151,6 +145,7 @@ export default {
 
 <style scoped>
   .vux-demo {
+    margin-top: 50px;
     text-align: center;
   }
 
