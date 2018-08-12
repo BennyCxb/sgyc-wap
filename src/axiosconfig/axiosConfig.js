@@ -20,7 +20,7 @@ AjaxPlugin.$http.interceptors.request.use(
     _myThis.$vux.loading.show({
       text: '数据加载中，请稍后...'
     })
-    const token = cookie.get('TZManage')
+    const token = cookie.get('TZManage') || cookie.get('TZOldManage')
     if (token) {
       config.headers.common['Authorization'] = 'Bearer ' + token
     }
@@ -75,9 +75,11 @@ export function get (url, params) {
       .get(url, {
         params: params
       })
-      .then(res => {
-        resolve(res.data)
-      })
+      .then(
+        res => {
+          resolve(res.data)
+        }
+      )
       .catch(err => {
         reject(err.data)
       })

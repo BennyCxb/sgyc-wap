@@ -1,7 +1,7 @@
 <template>
   <div>
     <x-header :left-options="{backText: '登出'}">
-      <span>四边三化</span>
+      <span>{{title}}</span>
     </x-header>
 
     <div class="vux-demo">
@@ -54,11 +54,20 @@ export default {
   },
   data () {
     return {
+      title: '',
       menus: [],
       showMenus: false
     }
   },
   methods: {
+    init () {
+      let project = localStorage.getItem('project')
+      if (project === '1') {
+        this.title = '四边三化'
+      } else {
+        this.title = '老旧工业区块改造'
+      }
+    },
     getMenu () {
       var self = this
       this.$api.sbsh.isLogin()
@@ -138,6 +147,7 @@ export default {
     }
   },
   created () {
+    this.init()
     this.getMenu()
   }
 }

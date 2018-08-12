@@ -12,20 +12,14 @@
                   v-model="form.FYear"
                   format="YYYY"
                   @on-change="change"
-                  title="年份"
-                  @on-cancel="log('cancel')"
-                  @on-confirm="onConfirm"
-                  @on-hide="log('hide', $event)"></datetime>
+                  title="年份"></datetime>
               </group>
               <group>
                 <datetime
                   v-model="form.FMonth"
                   format="MM"
                   @on-change="change"
-                  title="月份"
-                  @on-cancel="log('cancel')"
-                  @on-confirm="onConfirm"
-                  @on-hide="log('hide', $event)"></datetime>
+                  title="月份"></datetime>
               </group>
               <group>
                 <selector title="行政区划" direction="rtl" :options="adcdList" v-model="form.FAgencyValue"></selector>
@@ -114,7 +108,7 @@
 
 <script>
 import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Tab, TabItem, Datetime, Selector, Search } from 'vux'
-import pagination from './pagination'
+import pagination from '../Pagination'
 export default {
   directives: {
     TransferDom
@@ -314,7 +308,7 @@ function getResult (val) {
 </script>
 
 <style lang="less" scoped>
-  @import '~vux/src/styles/close.less';
+  @import '../../../node_modules/vux/src/styles/close.less';
   .table-top {
     height: 44px;
     padding: 0;

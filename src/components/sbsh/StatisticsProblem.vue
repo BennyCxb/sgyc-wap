@@ -152,7 +152,7 @@
 
 <script>
 import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Tab, TabItem, Datetime, Selector, Search, Scroller } from 'vux'
-import pagination from './pagination'
+import pagination from '../Pagination'
 export default {
   directives: {
     TransferDom
@@ -346,7 +346,7 @@ function getResult (val) {
 </script>
 
 <style lang="less" scoped>
-  @import '~vux/src/styles/close.less';
+  @import '../../../node_modules/vux/src/styles/close.less';
   .table-top {
     height: 44px;
     padding: 0;
