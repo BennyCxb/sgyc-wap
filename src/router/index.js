@@ -106,31 +106,39 @@ export default new Router({
       path: '/StatisticsPlan',
       component: resolve => require(['../components/ljcq/StatisticsPlan.vue'], resolve)
     },
-    // // 统计-进度
-    // {
-    //   path: '/StatisticsProgress:fid-:sid-:tid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsProgress.vue'], resolve)
-    // },
-    // {
-    //   path: '/StatisticsProgress:fid-:sid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsProgress.vue'], resolve)
-    // },
-    // {
-    //   path: '/StatisticsProgress:fid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsProgress.vue'], resolve)
-    // },
-    // // 统计-汇总
-    // {
-    //   path: '/StatisticsSummary:fid-:sid-:tid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsSummary.vue'], resolve)
-    // },
-    // {
-    //   path: '/StatisticsSummary:fid-:sid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsSummary.vue'], resolve)
-    // },
-    // {
-    //   path: '/StatisticsSummary:fid-:btid',
-    //   component: resolve => require(['../components/page/StatisticsSummary.vue'], resolve)
-    // }
+    // 统计-进度
+    {
+      path: '/StatisticsProgress:fid-:sid-:tid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+    },
+    {
+      path: '/StatisticsProgress:fid-:sid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+    },
+    {
+      path: '/StatisticsProgress:fid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+    },
+    {
+      path: '/StatisticsProgress',
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+    },
+    // 统计-汇总
+    {
+      path: '/StatisticsSummary:fid-:sid-:tid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsSummary.vue'], resolve)
+    },
+    {
+      path: '/StatisticsSummary:fid-:sid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsSummary.vue'], resolve)
+    },
+    {
+      path: '/StatisticsSummary:fid-:btid',
+      component: resolve => require(['../components/ljcq/StatisticsSummary.vue'], resolve)
+    },
+    {
+      path: '/StatisticsSummary',
+      component: resolve => require(['../components/ljcq/StatisticsSummary.vue'], resolve)
+    }
   ]
 })

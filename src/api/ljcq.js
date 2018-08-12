@@ -25,8 +25,16 @@ export default {
   getProjectLInfo (params) {
     return get('/LoanApply/GetQXList', params)
   },
-  // 获取统计数据
+  // 获取统计计划表数据
   getStatisticalPlan (params) {
     return get('/Statistical/GetOldCityChangeSchDataByAgency', params)
+  },
+  // 获取统计进度表数据
+  getStatisticalProgress (params) {
+    return get('/Statistical/GetOldCityChangeProgressDataByAgency', params)
+  },
+  // 获取统计汇总表数据
+  getStatisticalSummary (params) {
+    return get('/Statistical/GetOldCityAllData', params)
   }
 }

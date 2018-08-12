@@ -36,67 +36,55 @@
           <x-table :cell-bordered="true" style="background-color:#fff; table-layout: fixed;">
             <thead>
             <tr>
-              <th rowspan="3">行政区划</th>
-              <th rowspan="3">三年改造任务数</th>
-              <!--<th colspan="3" v-for="(item, i) in thItems" :key="i">{{item}}</th>-->
-              <th colspan="6">{{Number(form.FYear)}}</th>
-              <th colspan="6">{{Number(form.FYear) + 1}}</th>
-              <th colspan="6">{{Number(form.FYear) + 2}}</th>
+              <th rowspan="2">行政区划</th>
+              <th rowspan="2">三年改造任务数(个)</th>
+              <th colspan="7">整体(或大部分)拆除退出工业用途</th>
+              <th colspan="7">整体(或大部分)拆除重建用于工业</th>
+              <th colspan="4">综合整治(含部分拆除)用于产业提升或转型</th>
             </tr>
             <tr>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-            </tr>
-            <tr>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
+              <th>已启动(个)</th>
+              <th>已签约(个)</th>
+              <th>已拆除(个)</th>
+              <th>已开工(个)</th>
+              <th>已完工(个)</th>
+              <th>已拆除面积(万㎡)</th>
+              <th>其中违法建筑面积(万㎡)</th>
+              <th>已启动(个)</th>
+              <th>已签约(个)</th>
+              <th>已拆除(个)</th>
+              <th>已开工(个)</th>
+              <th>已完工(个)</th>
+              <th>已拆除面积(万㎡)</th>
+              <th>其中违法建筑面积(万㎡)</th>
+              <th>改造中(个)</th>
+              <th>已改造(个)</th>
+              <th>已拆除面积(万㎡)</th>
+              <th>已整治面积(万㎡)</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(item, i) in tableData" :key="i">
               <td>{{item.FAgencyName}}</td>
-              <td>{{item.FSumCount}}</td>
-              <td>{{item.Type1BeginFirst}}</td>
-              <td>{{item.Type1EndFirst}}</td>
-              <td>{{item.Type1BeginSecond}}</td>
-              <td>{{item.Type1EndSecond}}</td>
-              <td>{{item.Type1BeginThree}}</td>
-              <td>{{item.Type1EndThree}}</td>
-              <td>{{item.Type2BeginFirst}}</td>
-              <td>{{item.Type2EndFirst}}</td>
-              <td>{{item.Type2BeginSecond}}</td>
-              <td>{{item.Type2EndSecond}}</td>
-              <td>{{item.Type2BeginThree}}</td>
-              <td>{{item.Type2EndThree}}</td>
-              <td>{{item.Type3BeginFirst}}</td>
-              <td>{{item.Type3EndFirst}}</td>
-              <td>{{item.Type3BeginSecond}}</td>
-              <td>{{item.Type3EndSecond}}</td>
-              <td>{{item.Type3BeginThree}}</td>
-              <td>{{item.Type3EndThree}}</td>
+              <td>{{item.TotalCount}}</td>
+              <td>{{item.Change1Status1}}</td>
+              <td>{{item.Change1Status2}}</td>
+              <td>{{item.Change1Status3}}</td>
+              <td>{{item.Change1Status4}}</td>
+              <td>{{item.Change1Status5}}</td>
+              <td>{{item.Change1Area1}}</td>
+              <td>{{item.Change1Area2}}</td>
+              <td>{{item.Change2Status1}}</td>
+              <td>{{item.Change2Status2}}</td>
+              <td>{{item.Change2Status3}}</td>
+              <td>{{item.Change2Status4}}</td>
+              <td>{{item.Change2Status5}}</td>
+              <td>{{item.Change2Area1}}</td>
+              <td>{{item.Change2Area2}}</td>
+              <td>{{item.Change3Status0}}</td>
+              <td>{{item.Change3Status2}}</td>
+              <td>{{item.Change3Area1}}</td>
+              <td>{{item.Change3Area2}}</td>
             </tr>
             <tr v-if="!tableData.length">
               <td colspan="4">暂无数据</td>
@@ -137,7 +125,7 @@ export default {
   },
   data () {
     return {
-      title: '统计-计划表',
+      title: '统计-进度表',
       value: '',
       showScreen: false,
       edgeList: [],
@@ -164,7 +152,7 @@ export default {
     getStatistical () {
       let self = this
       this.showLoading = true
-      this.$api.ljcq.getStatisticalPlan(this.form).then(res => {
+      this.$api.ljcq.getStatisticalProgress(this.form).then(res => {
         self.showLoading = false
         self.showScreen = false
         self.tableData = res.object
@@ -172,9 +160,6 @@ export default {
         console.log(error)
         self.showLoading = false
         self.showScreen = false
-        self.$vux.toast.show({
-          text: error.message
-        })
       })
     },
     getResult (val) {

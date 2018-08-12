@@ -36,67 +36,42 @@
           <x-table :cell-bordered="true" style="background-color:#fff; table-layout: fixed;">
             <thead>
             <tr>
-              <th rowspan="3">行政区划</th>
-              <th rowspan="3">三年改造任务数</th>
-              <!--<th colspan="3" v-for="(item, i) in thItems" :key="i">{{item}}</th>-->
-              <th colspan="6">{{Number(form.FYear)}}</th>
-              <th colspan="6">{{Number(form.FYear) + 1}}</th>
-              <th colspan="6">{{Number(form.FYear) + 2}}</th>
-            </tr>
-            <tr>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-              <th colspan="2">整体(或大部分)拆除退出工业用途</th>
-              <th colspan="2">整体(或大部分)拆除重建用于工业</th>
-              <th colspan="2">综合整治(含部分拆除)用于产业提升或转型</th>
-            </tr>
-            <tr>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
-              <th>拟启动</th>
-              <th>拟完成</th>
+              <th width="50px">#</th>
+              <th>区块名称</th>
+              <th>县(市、区)</th>
+              <th>乡镇街道</th>
+              <th>总占地</th>
+              <th>总建筑面积</th>
+              <th>其中违建面积</th>
+              <th>市定改造方式</th>
+              <th>县市区自定改造方式</th>
+              <th>改造后用途</th>
+              <th>拟投资额</th>
+              <th>改造后违建面积</th>
+              <th>拟启动时间</th>
+              <th>拟完成时间</th>
+              <th>目前进度</th>
+              <th>是否是示范项目</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(item, i) in tableData" :key="i">
+              <td>{{item.rowID}}</td>
+              <td>{{item.FAreaName}}</td>
               <td>{{item.FAgencyName}}</td>
-              <td>{{item.FSumCount}}</td>
-              <td>{{item.Type1BeginFirst}}</td>
-              <td>{{item.Type1EndFirst}}</td>
-              <td>{{item.Type1BeginSecond}}</td>
-              <td>{{item.Type1EndSecond}}</td>
-              <td>{{item.Type1BeginThree}}</td>
-              <td>{{item.Type1EndThree}}</td>
-              <td>{{item.Type2BeginFirst}}</td>
-              <td>{{item.Type2EndFirst}}</td>
-              <td>{{item.Type2BeginSecond}}</td>
-              <td>{{item.Type2EndSecond}}</td>
-              <td>{{item.Type2BeginThree}}</td>
-              <td>{{item.Type2EndThree}}</td>
-              <td>{{item.Type3BeginFirst}}</td>
-              <td>{{item.Type3EndFirst}}</td>
-              <td>{{item.Type3BeginSecond}}</td>
-              <td>{{item.Type3EndSecond}}</td>
-              <td>{{item.Type3BeginThree}}</td>
-              <td>{{item.Type3EndThree}}</td>
+              <td>{{item.FTownName}}</td>
+              <td>{{item.FOccupy}}</td>
+              <td>{{item.FTotalAcreage}}</td>
+              <td>{{item.FNonConBuildingArea}}</td>
+              <td>{{item.FEVName}}</td>
+              <td>{{item.FTownChangeType}}</td>
+              <td>{{item.FEVName1}}</td>
+              <td>{{item.FTotalInvestAmount}}</td>
+              <td>{{item.FAfterChangeArea}}</td>
+              <td>{{item.FChangeBeginDate}}</td>
+              <td>{{item.FChangeEndDate}}</td>
+              <td>{{item.FProgress}}</td>
+              <td>{{item.FDemonstration}}</td>
             </tr>
             <tr v-if="!tableData.length">
               <td colspan="4">暂无数据</td>
@@ -137,7 +112,7 @@ export default {
   },
   data () {
     return {
-      title: '统计-计划表',
+      title: '统计-汇总表',
       value: '',
       showScreen: false,
       edgeList: [],
@@ -164,7 +139,7 @@ export default {
     getStatistical () {
       let self = this
       this.showLoading = true
-      this.$api.ljcq.getStatisticalPlan(this.form).then(res => {
+      this.$api.ljcq.getStatisticalSummary(this.form).then(res => {
         self.showLoading = false
         self.showScreen = false
         self.tableData = res.object
@@ -172,9 +147,6 @@ export default {
         console.log(error)
         self.showLoading = false
         self.showScreen = false
-        self.$vux.toast.show({
-          text: error.message
-        })
       })
     },
     getResult (val) {
@@ -231,6 +203,6 @@ function getResult (val) {
 
   .box1 {
     position: relative;
-    width: 3000px;
+    width: 2000px;
   }
 </style>
