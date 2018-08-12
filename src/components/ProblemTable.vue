@@ -63,6 +63,7 @@
               top="46px"
               @on-cancel="getProblemList"
               @on-submit="getProblemList"
+              placeholder="项目编号"
               ref="search">
             </search>
           </flexbox-item>

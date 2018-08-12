@@ -50,6 +50,22 @@ export default new Router({
     {
       path: '/dtable',
       component: resolve => require(['../components/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/StatisicsProblem:fid-:sid-:tid-:btid',
+      component: resolve => require(['../components/StatisicsProblem.vue'], resolve)
+    },
+    {
+      path: '/StatisicsProblem:fid-:sid-:btid',
+      component: resolve => require(['../components/StatisicsProblem.vue'], resolve)
+    },
+    {
+      path: '/StatisicsProblem:fid-:btid',
+      component: resolve => require(['../components/StatisicsProblem.vue'], resolve)
+    },
+    {
+      path: '/StatisicsProblem',
+      component: resolve => require(['../components/StatisicsProblem.vue'], resolve)
     }
   ]
 })

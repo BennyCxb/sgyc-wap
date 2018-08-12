@@ -49,6 +49,7 @@
               top="46px"
               @on-cancel="getProjectList"
               @on-submit="getProjectList"
+              placeholder="项目名称"
               ref="search">
             </search>
           </flexbox-item>
@@ -148,9 +149,6 @@ export default {
       this.getEnumList('三无四美', 'proList')
       this.getProjectList()
     },
-    onChange (val) {
-      console.log(val)
-    },
     /**
      * 重置筛选条件
      */
@@ -216,7 +214,6 @@ export default {
             value: obj.FName
           })
         })
-        console.log(self[array])
       }).catch(error => {
         console.log(error)
         self.$vux.toast.show({
@@ -227,9 +224,7 @@ export default {
     getProjectList () {
       let self = this
       this.showLoading = true
-      console.log(this.form)
       this.$api.sbsh.getProjectList(this.form).then(res => {
-        console.log(res)
         self.showLoading = false
         self.showScreen = false
         self.tableData = res.object

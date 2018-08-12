@@ -27,5 +27,9 @@ export default {
   },
   getProjectLInfo (params) {
     return get('/LoanApply/GetQXList', params)
+  },
+  // 获取统计数据
+  getStatistical (params) {
+    return get('/Statistical/GetPerimeterTable', params)
   }
 }
