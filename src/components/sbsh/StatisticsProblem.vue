@@ -11,7 +11,7 @@
                 <selector title="问题点位" direction="rtl" :options="proList" v-model="form.FBillTypeID"></selector>
               </group>
               <group>
-                <selector title="问题点位" direction="rtl" :options="edgeList" v-model="form.FPerimeter"></selector>
+                <selector title="四边" direction="rtl" :options="edgeList" v-model="form.FPerimeter"></selector>
               </group>
               <box gap="10px 10px">
                 <x-button @click.native="resetSearch">重置</x-button>
@@ -31,13 +31,11 @@
               <!--<x-input v-model="value" placeholder="项目名称"></x-input>-->
             <!--</group>-->
             <search
-              v-model="form.FBillNo"
               position="absolute"
               auto-scroll-to-top
               top="46px"
               @on-cancel="getStatistical"
               @on-submit="getStatistical"
-              placeholder="项目名称"
               ref="search">
             </search>
           </flexbox-item>
@@ -227,18 +225,9 @@ export default {
      * 重置筛选条件
      */
     resetSearch () {
-      let FPorjectName = this.form.FPorjectName
       this.form = Object.assign({}, {
-        FBillTypeID: '100002',
-        FPorjectName: FPorjectName,
-        FYear: '',
-        FMonth: '',
-        FAgencyValue: '',
-        FProjectTypeID: '',
-        curr: 1,
-        pageSize: 20,
-        strSortFiled: '',
-        strSortType: ''
+        FBillTypeID: 1000011,
+        FPerimeter: 1
       })
     },
     /**

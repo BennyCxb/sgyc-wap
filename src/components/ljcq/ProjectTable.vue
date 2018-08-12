@@ -184,16 +184,18 @@ export default {
      * 重置筛选条件
      */
     resetSearch () {
-      let FBillNo = this.form.FBillNo
       this.form = Object.assign({}, {
-        FBillTypeID: this.$route.params.btid,
-        FBillNo: FBillNo,
-        FYear: '',
-        FMonth: '',
-        FAgencyValue: '',
-        FEdge: '',
-        FProbType: '',
-        FStatus: '',
+        FBillTypeID: 200001,
+        FYear: '',        // 年份
+        FAgencyValue: '',   // 行政区划
+        FTownValue: '',
+        FCityChangeType: '',
+        FTownChangeType: '',
+        FAfterChange: '',
+        FChangeDate: [],
+        FChangeBeginDate: '',
+        FChangeEndDate: '',
+        FDemonstration: '',
         curr: 1,
         pageSize: 20,
         strSortFiled: '',
