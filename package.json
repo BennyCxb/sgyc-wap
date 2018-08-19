@@ -19,6 +19,7 @@
     "fastclick": "^1.0.6",
     "qs": "^6.5.2",
     "vue": "^2.5.2",
+    "vue-echarts": "^3.0.9",
     "vue-lodash": "^2.0.0",
     "vue-router": "^3.0.1",
     "vuex": "^2.1.1",

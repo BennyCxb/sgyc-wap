@@ -8,16 +8,15 @@ import router from './router'
 import VueRouter from 'vue-router'
 import App from './App'
 import api from './api'
+
 import { AjaxPlugin, LoadingPlugin, ToastPlugin, XHeader } from 'vux'
 import './assets/iconfont/iconfont.css'
 // import _ from 'vue-lodash'
 import _ from 'lodash'
-// import VueLodash from 'vue-lodash'
-
-// const options = { name: 'lodash' } // customize the way you want to call it
-
-// Vue.use(VueLodash, options) // options is optional
-// import VueLodash from 'vue-lodash'
+import ECharts from 'vue-echarts/components/ECharts'
+// import ECharts modules manually to reduce bundle size
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -25,9 +24,8 @@ Vue.use(AjaxPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.component('x-header', XHeader)
+Vue.component('chart', ECharts)
 Vue.prototype._ = _
-// const options = { name: 'lodash' } // customize the way you want to call it
-// Vue.use(VueLodash, options) // options is optional
 require('es6-promise').polyfill()
 
 /** i18n **/

@@ -54,19 +54,19 @@ export default new Router({
     },
     {
       path: '/StatisicsProblem:fid-:sid-:tid-:btid',
-      component: resolve => require(['../components/sbsh/StatisticsProblem.vue'], resolve)
+      component: resolve => require(['../components/sbsh/StatisticsProblem2.vue'], resolve)
     },
     {
       path: '/StatisicsProblem:fid-:sid-:btid',
-      component: resolve => require(['../components/sbsh/StatisticsProblem.vue'], resolve)
+      component: resolve => require(['../components/sbsh/StatisticsProblem2.vue'], resolve)
     },
     {
       path: '/StatisicsProblem:fid-:btid',
-      component: resolve => require(['../components/sbsh/StatisticsProblem.vue'], resolve)
+      component: resolve => require(['../components/sbsh/StatisticsProblem2.vue'], resolve)
     },
     {
       path: '/StatisicsProblem',
-      component: resolve => require(['../components/sbsh/StatisticsProblem.vue'], resolve)
+      component: resolve => require(['../components/sbsh/StatisticsProblem2.vue'], resolve)
     },
     // 老旧工业区块改造
     {
@@ -109,19 +109,19 @@ export default new Router({
     // 统计-进度
     {
       path: '/StatisticsProgress:fid-:sid-:tid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
     },
     {
       path: '/StatisticsProgress:fid-:sid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
     },
     {
       path: '/StatisticsProgress:fid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
     },
     {
       path: '/StatisticsProgress',
-      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
     },
     // 统计-汇总
     {
