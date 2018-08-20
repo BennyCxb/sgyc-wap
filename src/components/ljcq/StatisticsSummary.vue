@@ -1,7 +1,7 @@
 <template>
   <div>
     <x-header>{{title}}</x-header>
-    <div>
+    <div style="height: calc(100% - 46px);">
       <div class="table-top">
         <div v-transfer-dom>
           <popup v-model="showScreen" position="right" width="70%">
@@ -31,7 +31,8 @@
       <!--<group>-->
         <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
       <!--</group>-->
-      <scroller lock-y scrollbar-x>
+      <!--<scroller scrollbar-x scrollbar-y>-->
+      <div style="height: calc(100% - 44px); overflow: auto">
         <div class="box1">
           <x-table :cell-bordered="true" style="background-color:#fff; table-layout: fixed;">
             <thead>
@@ -79,7 +80,8 @@
             </tbody>
           </x-table>
         </div>
-      </scroller>
+      </div>
+      <!--</scroller>-->
     </div>
   </div>
 </template>
