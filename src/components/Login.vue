@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center">
-      <img class="logo" src="../assets/vux_logo.png">
+      <img class="logo" src="../assets/logo.png">
       <h1 v-text="title"></h1>
     </div>
     <group label-width="4.5em" label-margin-right="2em" label-align="right">
@@ -53,7 +53,7 @@ export default {
           self.$router.push({path: '/home'})
           localStorage.setItem('project', this.project)
         }).catch(error => {
-          // self.$vux.loading.hide()
+          self.$vux.loading.hide()
           console.log(error)
         })
       } else {
@@ -62,7 +62,7 @@ export default {
           self.$router.push({path: '/home'})
           localStorage.setItem('project', this.project)
         }).catch(error => {
-          // self.$vux.loading.hide()
+          self.$vux.loading.hide()
           console.log(error)
         })
       }
@@ -95,8 +95,8 @@ export default {
 
 <style scoped>
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin-top: 60px;
   }
 </style>

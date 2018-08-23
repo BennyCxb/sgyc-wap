@@ -3,43 +3,45 @@
     <x-header :left-options="{backText: '登出'}">
       <span>{{title}}</span>
     </x-header>
+    <scroller lock-x scrollbar-y style="height: calc(100% - 46px);">
+      <div>
+        <div class="vux-demo">
+          <img class="logo" src="../assets/logo.png">
+          <h1></h1>
+        </div>
+        <!--<group v-for="(items, i) in menus" :key="i" :title="items.title">-->
+        <!--<cell v-for="(item, index) in items.subs" :key="index" :title="item.title" value="cool" is-link></cell>-->
+        <!--</group>-->
 
-    <div class="vux-demo">
-      <img class="logo" src="../assets/vux_logo.png">
-      <h1></h1>
-    </div>
-    <!--<group v-for="(items, i) in menus" :key="i" :title="items.title">-->
-      <!--<cell v-for="(item, index) in items.subs" :key="index" :title="item.title" value="cool" is-link></cell>-->
-    <!--</group>-->
+        <group v-for="(items, i) in menus":key="i">
+          <cell
+            :title="items.title"
+            is-link
+            :link="items.url"
+            :border-intent="false"
+            :arrow-direction="items.subs ? (items.showContent ? 'up' : 'down') : 'right'"
+            @click.native="items.showContent = !items.showContent">
+          </cell>
 
-    <group v-for="(items, i) in menus":key="i">
-      <cell
-        :title="items.title"
-        is-link
-        :link="items.url"
-        :border-intent="false"
-        :arrow-direction="items.subs ? (items.showContent ? 'up' : 'down') : 'right'"
-        @click.native="items.showContent = !items.showContent">
-      </cell>
-
-      <template v-if="items.showContent">
-        <cell-box v-for="(item, index) in items.subs"
-                  :key="index"
-                  :border-intent="false"
-                  class="sub-item"
-                  :class="items.showContent?'animate':''"
-                  :link="item.index"
-                  is-link>
-          {{item.title}}
-        </cell-box>
-      </template>
-
-    </group>
+          <template v-if="items.showContent">
+            <cell-box v-for="(item, index) in items.subs"
+                      :key="index"
+                      :border-intent="false"
+                      class="sub-item"
+                      :class="items.showContent?'animate':''"
+                      :link="item.index"
+                      is-link>
+              {{item.title}}
+            </cell-box>
+          </template>
+        </group>
+      </div>
+    </scroller>
   </div>
 </template>
 
 <script>
-import { XHeader, Actionsheet, TransferDom, Group, Cell, CellBox } from 'vux'
+import { XHeader, Actionsheet, TransferDom, Group, Cell, CellBox, Scroller } from 'vux'
 
 export default {
   directives: {
@@ -50,7 +52,8 @@ export default {
     Actionsheet,
     Group,
     Cell,
-    CellBox
+    CellBox,
+    Scroller
   },
   data () {
     return {
@@ -155,13 +158,13 @@ export default {
 
 <style scoped>
   .vux-demo {
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
   }
 
   .logo {
-    width: 100px;
-    height: 100px
+    width: 200px;
+    height: 200px
   }
 
   .overwrite-title-demo {
