@@ -8,24 +8,26 @@
           format="YYYY"
           title="年份"></datetime>
       </div>
-      <div class="box1" style="height: calc(100% - 44px);">
-        <group v-for="(item, i) in chartsData" :key="i">
-          <div class="charts-title">
-            <h3 class="text-center">{{item.title}}</h3>
-          </div>
-          <v-chart
-            ref="demo"
-            :data="item.data">
-            <v-scale x field="key" />
-            <v-scale y field="value" />
-            <v-bar series-field="name" :adjust="{
-              type: 'dodge',
-              marginRatio: 0.05 // 设置分组间柱子的间距
-            }" />
-            <v-tooltip show-value-in-legend />
-          </v-chart>
-        </group>
-      </div>
+      <scroller lock-x scrollbar-y style="height: calc(100% - 44px);">
+        <div class="box1">
+          <group v-for="(item, i) in chartsData" :key="i">
+            <div class="charts-title">
+              <h3 class="text-center">{{item.title}}</h3>
+            </div>
+            <v-chart
+              ref="demo"
+              :data="item.data">
+              <v-scale x field="key" />
+              <v-scale y field="value" />
+              <v-bar series-field="name" :adjust="{
+                type: 'dodge',
+                marginRatio: 0.05 // 设置分组间柱子的间距
+              }" />
+              <v-tooltip show-value-in-legend />
+            </v-chart>
+          </group>
+        </div>
+      </scroller>
     </div>
   </div>
 </template>
@@ -181,9 +183,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.params)
-    // let billtypeId = Number(this.$route.params.btid)
-    // this.form.FBillTypeID = billtypeId
     this.init()
   }
 }

@@ -31,8 +31,8 @@
       <!--<group>-->
         <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
       <!--</group>-->
-      <!--<scroller scrollbar-x scrollbar-y>-->
-      <div style="height: calc(100% - 44px); overflow: auto">
+      <scroller scrollbar-x scrollbar-y style="height: calc(100% - 44px);">
+      <!--<div>-->
         <div class="box1">
           <x-table :cell-bordered="true" style="background-color:#fff; table-layout: fixed;">
             <thead>
@@ -80,8 +80,8 @@
             </tbody>
           </x-table>
         </div>
-      </div>
-      <!--</scroller>-->
+      <!--</div>-->
+      </scroller>
     </div>
   </div>
 </template>
@@ -162,9 +162,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.params)
-    // let billtypeId = Number(this.$route.params.btid)
-    // this.form.FBillTypeID = billtypeId
     this.init()
   }
 }

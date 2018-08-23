@@ -13,10 +13,10 @@ import { AjaxPlugin, LoadingPlugin, ToastPlugin, XHeader } from 'vux'
 import './assets/iconfont/iconfont.css'
 // import _ from 'vue-lodash'
 import _ from 'lodash'
-import ECharts from 'vue-echarts/components/ECharts'
+// import ECharts from 'vue-echarts/components/ECharts'
 // import ECharts modules manually to reduce bundle size
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/component/tooltip'
+// import 'echarts/lib/chart/bar'
+// import 'echarts/lib/component/tooltip'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -24,7 +24,7 @@ Vue.use(AjaxPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.component('x-header', XHeader)
-Vue.component('chart', ECharts)
+// Vue.component('chart', ECharts)
 Vue.prototype._ = _
 require('es6-promise').polyfill()
 

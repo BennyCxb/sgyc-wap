@@ -45,8 +45,8 @@
       <!--<group>-->
         <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
       <!--</group>-->
-      <!--<scroller lock-x scrollbar-y style="height: calc(100% - 44px);">-->
-        <div class="box1" style="height: calc(100% - 44px);">
+      <scroller lock-x scrollbar-y style="height: calc(100% - 44px);">
+        <div class="box1">
           <group v-for="(item, i) in chartsData" :key="i">
             <div class="charts-title">
               <h3 class="text-center">{{item.title}}</h3>
@@ -61,7 +61,7 @@
             </div>
           </group>
         </div>
-      <!--</scroller>-->
+      </scroller>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <x-header>{{title}}</x-header>
-    <div>
+    <div style="height: calc(100% - 46px);">
       <div class="table-top">
         <div v-transfer-dom>
           <popup v-model="showScreen" position="right" width="70%">
@@ -73,47 +73,48 @@
       <!--<group>-->
         <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
       <!--</group>-->
-      <x-table :cell-bordered="false" style="background-color:#fff; table-layout: fixed;">
-        <thead>
-        <tr>
-          <th>年份</th>
-          <th>行政区划</th>
-          <th>区块名称</th>
-          <th>示范项目</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(item, i) in tableData" :key="i">
-          <td>{{item.FYear}}</td>
-          <td>{{item.FAgencyName}}</td>
-          <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FAreaName}}</td>
-          <td>{{item.FDemonstration}}</td>
-        </tr>
-        <tr v-if="!tableData.length">
-          <td colspan="4">暂无数据</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-          <td colspan="4">
-            <pagination :page-index="form.curr"
-                        :total="count"
-                        :page-size="form.pageSize"
-                        @change="pageChange">
-            </pagination>
-          </td>
-        </tr>
-        </tfoot>
-      </x-table>
-      <div class="text-center">
-
-      </div>
+      <scroller lock-x scrollbar-y style="height: calc(100% - 44px);">
+        <div class="box1">
+          <x-table :cell-bordered="false" style="background-color:#fff; table-layout: fixed;">
+            <thead>
+            <tr>
+              <th>年份</th>
+              <th>行政区划</th>
+              <th>区块名称</th>
+              <th>示范项目</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item, i) in tableData" :key="i">
+              <td>{{item.FYear}}</td>
+              <td>{{item.FAgencyName}}</td>
+              <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FAreaName}}</td>
+              <td>{{item.FDemonstration}}</td>
+            </tr>
+            <tr v-if="!tableData.length">
+              <td colspan="4">暂无数据</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="4">
+                <pagination :page-index="form.curr"
+                            :total="count"
+                            :page-size="form.pageSize"
+                            @change="pageChange">
+                </pagination>
+              </td>
+            </tr>
+            </tfoot>
+          </x-table>
+        </div>
+      </scroller>
     </div>
   </div>
 </template>
 
 <script>
-import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Tab, TabItem, Datetime, Selector, Search } from 'vux'
+import { Flexbox, FlexboxItem, Group, Cell, Box, XInput, XButton, XTable, Popup, TransferDom, Tab, TabItem, Datetime, Selector, Search, Scroller } from 'vux'
 import pagination from '../Pagination'
 export default {
   directives: {
@@ -134,7 +135,8 @@ export default {
     Search,
     Tab,
     TabItem,
-    pagination
+    pagination,
+    Scroller
   },
   data () {
     return {
@@ -176,7 +178,7 @@ export default {
   methods: {
     init () {
       this.getAgencyList()
-      this.getCountyList()
+      // this.getCountyList()
       this.getEnumList('按台州市办法分类', 'cityOption')
       this.getProblemList()
     },
@@ -348,5 +350,10 @@ function getResult (val) {
   .table-screen .icon {
     padding: 0 15px;
     font-size: 20px;
+  }
+
+  .box1 {
+    position: relative;
+    /*height: 912px;*/
   }
 </style>
