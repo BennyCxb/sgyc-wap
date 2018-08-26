@@ -18,14 +18,14 @@ export default {
   getProblemList (params) {
     return post('/LoanApply/GetSJList', params)
   },
-  getProblemLInfo (params) {
+  getProblemInfo (params) {
     return get('/LoanApply/GetApplyInfo', params)
   },
   // 获取问题点位
   getProjectList (params) {
     return post('/LoanApply/GetQXList', params)
   },
-  getProjectLInfo (params) {
+  getProjectInfo (params) {
     return get('/LoanApply/GetQXList', params)
   },
   // 获取统计数据

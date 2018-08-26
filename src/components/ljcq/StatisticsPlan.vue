@@ -30,7 +30,7 @@
       <!--<group>-->
         <!--<cell v-for="(item, i) in tableData" :key="i" :title="item.FBillNo" is-link></cell>-->
       <!--</group>-->
-      <scroller scrollbar-x scrollbar-y style="height: calc(100% - 44px);">
+      <scroller scrollbar-x scrollbar-y height="-44px">
         <div class="box1">
           <x-table :cell-bordered="true" style="background-color:#fff; table-layout: fixed;">
             <thead>
@@ -231,6 +231,6 @@ function getResult (val) {
   .box1 {
     position: relative;
     width: 3000px;
-    height: 530px;
+    padding-bottom: 50px;
   }
 </style>

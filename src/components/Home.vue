@@ -3,8 +3,8 @@
     <x-header :left-options="{backText: '登出'}">
       <span>{{title}}</span>
     </x-header>
-    <scroller lock-x scrollbar-y style="height: calc(100% - 46px);">
-      <div>
+    <scroller lock-x scrollbar-y height="-46">
+      <div class="box1">
         <div class="vux-demo">
           <img class="logo" src="../assets/logo.png">
           <h1></h1>
@@ -184,5 +184,9 @@ export default {
     max-height: 9999px;
     transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
     transition-delay: 0s;
+  }
+
+  .box1 {
+    padding-bottom: 50px;
   }
 </style>

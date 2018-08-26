@@ -72,18 +72,22 @@
           <x-table :cell-bordered="false" style="background-color:#fff; table-layout: fixed;">
             <thead>
             <tr>
-              <th>年份</th>
-              <th>行政区划</th>
+              <!--<th>年份</th>-->
+              <!--<th>行政区划</th>-->
               <th>项目编号</th>
               <th>线路名称</th>
+              <th>问题类型</th>
+              <th>当前状态</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(item, i) in tableData" :key="i">
-              <td>{{item.FYear}}</td>
-              <td>{{item.FAgencyName}}</td>
+            <tr v-for="(item, i) in tableData" :key="i" @click="openInfo(item.FID)">
+              <!--<td>{{item.FYear}}</td>-->
+              <!--<td>{{item.FAgencyName}}</td>-->
               <td>{{item.FBillNo}}</td>
               <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FLineName}}</td>
+              <td>{{item.FProbType}}</td>
+              <td>{{item.FChangeStatusName}}</td>
             </tr>
             <tr v-if="!tableData.length">
               <td colspan="4">暂无数据</td>
@@ -145,6 +149,7 @@ export default {
       count: 0, // 总记录数
       showLoading: false,
       form: {
+        FID: '',
         FBillTypeID: '',
         FBillNo: '',      // 问题编号
         FYear: '',        // 年份
@@ -174,6 +179,7 @@ export default {
     resetSearch () {
       let FBillNo = this.form.FBillNo
       this.form = Object.assign({}, {
+        FID: '',
         FBillTypeID: this.$route.params.btid,
         FBillNo: FBillNo,
         FYear: '',
@@ -280,6 +286,10 @@ export default {
     pageChange (page) {
       this.form.curr = page
       this.getProblemList()
+    },
+    // 打开详细信息
+    openInfo (FID) {
+      this.$router.push({path: '/ProblemInfo' + '-' + FID})
     }
   },
   created () {

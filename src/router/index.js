@@ -22,19 +22,38 @@ export default new Router({
     // 四边三化
     {
       path: '/ptable:fid-:sid-:tid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProblemTable.vue'], resolve)
     },
     {
       path: '/ptable:fid-:sid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProblemTable.vue'], resolve)
     },
     {
       path: '/ptable:fid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProblemTable.vue'], resolve)
     },
     {
       path: '/ptable:bid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProblemTable.vue'], resolve)
+    },
+    {
+      path: '/ProblemInfo-:fid',
+      meta: {
+        keepAlive: false
+      },
+      component: resolve => require(['../components/sbsh/ProblemInfo.vue'], resolve)
     },
     {
       path: '/dtable:fid-:sid-:tid-:btid',
