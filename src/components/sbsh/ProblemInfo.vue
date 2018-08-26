@@ -15,7 +15,7 @@
         <group>
           <cell title="年度月份" :value="form.FYear + '-' + form.FMonth"></cell>
           <cell title="四边" :value="edge"></cell>
-          <cell title="问题类型" :value="form.FProbDescribe"></cell>
+          <cell title="问题类型" :value="problemType"></cell>
           <cell title="问题编号" :value="form.FBillNo"></cell>
           <cell title="行政区划" :value="form.FAgencyName"></cell>
           <cell title="乡镇街道" :value="form.FTwon"></cell>
@@ -53,6 +53,17 @@ export default {
         edge = obj.value
       }
       return edge
+    },
+    problemType () {
+      let self = this
+      let edge = ''
+      let obj = this._.find(this.proList, function (item) {
+        return item.key === self.form.FProbTypeID
+      })
+      if (obj) {
+        edge = obj.value
+      }
+      return edge
     }
   },
   data () {
@@ -61,6 +72,7 @@ export default {
       FID: '',
       FBillTypeID: '',
       edgeList: [],
+      proList: [],
       form: {
         FAccountabilityUnit: '',
         FAcreage: '',
@@ -105,6 +117,7 @@ export default {
   methods: {
     init () {
       this.getEnumList('四边', 'edgeList')
+      this.getEnumList('问题类型', 'proList')
       this.getInfo()
     },
     /**
