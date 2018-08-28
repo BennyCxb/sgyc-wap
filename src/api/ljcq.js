@@ -22,8 +22,8 @@ export default {
   getProjectList (params) {
     return post('/OldCity/GetList', params)
   },
-  getProjectLInfo (params) {
-    return get('/LoanApply/GetQXList', params)
+  getProjectInfo (params) {
+    return get('/OldCity/GetOldCity', params)
   },
   // 获取统计计划表数据
   getStatisticalPlan (params) {

@@ -9,3 +9,8 @@
 .text-right {
   text-align: center;
 }
+
+.login-container .weui-cells {
+  background: transparent !important;
+  color: #ffffff;
+}

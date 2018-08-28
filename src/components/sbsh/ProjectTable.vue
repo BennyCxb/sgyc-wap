@@ -68,7 +68,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, i) in tableData" :key="i">
+        <tr v-for="(item, i) in tableData" :key="i" @click="openInfo(item.FID)">
           <td>{{item.FYear}}</td>
           <td>{{item.FAgencyName}}</td>
           <td colspan="2" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FPorjectName}}</td>
@@ -246,9 +246,13 @@ export default {
     pageChange (page) {
       this.form.curr = page
       this.getProjectList()
+    },
+    // 打开详细信息
+    openInfo (FID) {
+      this.$router.push({path: '/ProjectInfo' + '-' + FID})
     }
   },
-  created () {
+  activated () {
     console.log(this.$route.params)
     // let billtypeId = Number(this.$route.params.btid)
     // this.form.FBillTypeID = billtypeId

@@ -292,7 +292,7 @@ export default {
       this.$router.push({path: '/ProblemInfo' + '-' + FID})
     }
   },
-  created () {
+  activated () {
     console.log(this.$route.params)
     let billtypeId = Number(this.$route.params.btid)
     if (billtypeId === 1000011) {

@@ -78,18 +78,20 @@
           <x-table :cell-bordered="false" style="background-color:#fff; table-layout: fixed;">
             <thead>
             <tr>
-              <th>年份</th>
+              <!--<th>年份</th>-->
               <th>行政区划</th>
               <th>区块名称</th>
               <th>示范项目</th>
+              <th>状态</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(item, i) in tableData" :key="i">
-              <td>{{item.FYear}}</td>
+            <tr v-for="(item, i) in tableData" :key="i" @click="openInfo(item.FID)">
+              <!--<td>{{item.FYear}}</td>-->
               <td>{{item.FAgencyName}}</td>
               <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FAreaName}}</td>
               <td>{{item.FDemonstration}}</td>
+              <td>{{item.FStatus}}</td>
             </tr>
             <tr v-if="!tableData.length">
               <td colspan="4">暂无数据</td>
@@ -311,9 +313,13 @@ export default {
     pageChange (page) {
       this.form.curr = page
       this.getProblemList()
+    },
+    // 打开详细信息
+    openInfo (FID) {
+      this.$router.push({path: '/OldInfo' + '-' + FID})
     }
   },
-  created () {
+  activated () {
     this.init()
   }
 }

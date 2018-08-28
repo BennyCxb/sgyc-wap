@@ -17,6 +17,9 @@ export default new Router({
     },
     {
       path: '/home',
+      meta: {
+        keepAlive: false
+      },
       component: resolve => require(['../components/Home.vue'], resolve)
     },
     // 四边三化
@@ -57,19 +60,38 @@ export default new Router({
     },
     {
       path: '/dtable:fid-:sid-:tid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProjectTable.vue'], resolve)
     },
     {
       path: '/dtable:fid-:sid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProjectTable.vue'], resolve)
     },
     {
       path: '/dtable:fid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProjectTable.vue'], resolve)
     },
     {
       path: '/dtable',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/sbsh/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/ProjectInfo-:fid',
+      meta: {
+        keepAlive: false
+      },
+      component: resolve => require(['../components/sbsh/ProjectInfo.vue'], resolve)
     },
     {
       path: '/StatisicsProblem:fid-:sid-:tid-:btid',
@@ -90,19 +112,38 @@ export default new Router({
     // 老旧工业区块改造
     {
       path: '/otable:fid-:sid-:tid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/ljcq/ProjectTable.vue'], resolve)
     },
     {
       path: '/otable:fid-:sid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/ljcq/ProjectTable.vue'], resolve)
     },
     {
       path: '/otable:fid-:btid',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/ljcq/ProjectTable.vue'], resolve)
     },
     {
       path: '/otable',
+      meta: {
+        keepAlive: true
+      },
       component: resolve => require(['../components/ljcq/ProjectTable.vue'], resolve)
+    },
+    {
+      path: '/OldInfo-:fid',
+      meta: {
+        keepAlive: false
+      },
+      component: resolve => require(['../components/ljcq/ProjectInfo.vue'], resolve)
     },
     // {
     //   path: '/null:fid-:btid',

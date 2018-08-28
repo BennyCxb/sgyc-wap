@@ -1,16 +1,18 @@
 <template>
-  <div>
+  <div class="login-container">
     <div class="text-center">
-      <img class="logo" src="../assets/logo.png">
-      <h1 v-text="title"></h1>
+      <img class="logo" src="../assets/logo-2.png">
     </div>
-    <group label-width="4.5em" label-margin-right="2em" label-align="right">
-      <x-input title="用户名" v-model="username"></x-input>
-      <x-input title="密&nbsp;&nbsp;&nbsp;码" v-model="password" type="password"></x-input>
-    </group>
-    <div style="padding:15px;">
-      <x-button type="primary" @click.native="login">登录</x-button>
-      <x-button @click.native="changeProject">{{btnText}}</x-button>
+    <div class="login-box">
+      <h1 class="text-center login-title" v-text="title"></h1>
+      <group label-width="4.5em" label-margin-right="2em" label-align="right">
+        <x-input title="用户名" v-model="username" show-clear></x-input>
+        <x-input title="密&nbsp;&nbsp;&nbsp;码" v-model="password" type="password" show-clear></x-input>
+      </group>
+      <div style="padding:15px 0;">
+        <x-button type="primary" @click.native="login">登录</x-button>
+        <x-button @click.native="changeProject">{{btnText}}</x-button>
+      </div>
     </div>
   </div>
 </template>
@@ -94,9 +96,26 @@ export default {
 </script>
 
 <style scoped>
+  .login-container {
+    height: 100%;
+    background: url("../assets/parallax-bg.jpg") no-repeat;
+    background-size: cover;
+  }
   .logo {
     width: 150px;
     height: 150px;
     margin-top: 60px;
+  }
+
+  .login-box {
+    width: 320px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .login-title {
+    color: #ffffff;
   }
 </style>
