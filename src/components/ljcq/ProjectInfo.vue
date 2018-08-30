@@ -222,7 +222,7 @@ export default {
         FLoanID: this.FID
       }
       this.$api.ljcq.getProjectExtend12(params).then(res => {
-        console.log(res)
+        // console.log(res)
         res.object.forEach((el, index) => {
           if (index === 0 && el.FSubmitStatus === 2) {
             self.progress = 1
@@ -236,7 +236,7 @@ export default {
             self.progress = 5
           }
         })
-        console.log(self.progress)
+        // console.log(self.progress)
       }).catch(error => {
         console.log(error)
         self.$vux.toast.show({
@@ -250,8 +250,7 @@ export default {
         FLoanID: this.FID
       }
       this.$api.ljcq.getProjectExtend3(params).then(res => {
-        console.log(res)
-
+        // console.log(res)
         res.object.forEach((el) => {
           if (el.FSubmitStatus === 1 && self.progress !== 2) {
             self.progress = 1
