@@ -22,8 +22,17 @@ export default {
   getProjectList (params) {
     return post('/OldCity/GetList', params)
   },
+  // 获取老旧工业区块改造信息
   getProjectInfo (params) {
     return get('/OldCity/GetOldCity', params)
+  },
+  // 获取老旧工业区块改造进度1和2
+  getProjectExtend12 (params) {
+    return get('/OldCity/GetOldCityExtend12List', params)
+  },
+  // 获取老旧工业区块改造进度3
+  getProjectExtend3 (params) {
+    return get('/OldCity/GetOldCityExtend3List', params)
   },
   // 获取统计计划表数据
   getStatisticalPlan (params) {
