@@ -54,7 +54,7 @@
           <cell title="联系方式" :value="form.FLinkMobile"></cell>
           <cell title="十大老旧工业区块改造示范点" :value="form.FDemonstration ? '是': '否'"></cell>
           <cell title="区块情况简介" :value="form.FRemark" primary="content"></cell>
-          <cell title="地图定位" :value="form.FGPS"></cell>
+          <cell title="地图定位" :value="form.FGPS" primary="content"></cell>
         </group>
         <group title="改造信息">
           <cell title="市级改造方式" :value="cityChangeType" primary="content"></cell>
@@ -68,8 +68,17 @@
         </group>
         <group title="改造进度" v-if="form.FCityChangeType == 3 && progress3.length">
           <group v-for="(item, i) in progress3" :key="i">
-            <cell :title="item.FCompanyName"></cell>
-            <cell-form-preview :list="item.list"></cell-form-preview>
+            <!--<cell :title="item.name"></cell>-->
+            <!--<cell-form-preview :list="item.list"></cell-form-preview>-->
+            <cell
+              :title="item.name"
+              is-link
+              :border-intent="false"
+              :arrow-direction="item.showContent ? 'up' : 'down'"
+              @click.native="item.showContent = !item.showContent"></cell>
+            <template v-if="item.showContent">
+              <cell-form-preview :border-intent="false" :list="item.list"></cell-form-preview>
+            </template>
           </group>
         </group>
       </div>
@@ -78,12 +87,13 @@
 </template>
 
 <script>
-import { Group, Cell, XInput, Flow, FlowState, FlowLine, Scroller } from 'vux'
+import { Group, Cell, CellFormPreview, XInput, Flow, FlowState, FlowLine, Scroller } from 'vux'
 
 export default {
   components: {
     Group,
     Cell,
+    CellFormPreview,
     XInput,
     Flow,
     FlowState,
@@ -270,8 +280,13 @@ export default {
               value: el.FDoneTime
             }
           ]
-          self.progress3.push(list)
+          self.progress3.push({
+            name: el.FCompanyName,
+            list: list,
+            showContent: false
+          })
         })
+        // console.log(self.progress3)
       }).catch(error => {
         console.log(error)
         self.$vux.toast.show({
