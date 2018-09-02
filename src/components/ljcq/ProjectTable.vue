@@ -57,7 +57,7 @@
               <!--<x-input v-model="value" placeholder="项目名称"></x-input>-->
             <!--</group>-->
             <search
-              v-model="form.FBillNo"
+              v-model="form.FAreaName"
               position="absolute"
               auto-scroll-to-top
               top="46px"
@@ -162,14 +162,15 @@ export default {
         FBillTypeID: 200001,
         FYear: '',        // 年份
         FAgencyValue: '',   // 行政区划
-        FTownValue: '',
-        FCityChangeType: '',
-        FTownChangeType: '',
+        FAreaName: '',      // 区块名称
         FAfterChange: '',
         FChangeDate: [],
         FChangeBeginDate: '',
         FChangeEndDate: '',
+        FCityChangeType: '',
         FDemonstration: '',
+        FTownChangeType: '',
+        FTownValue: '',
         curr: 1,              // 当前页面
         pageSize: 20,         // 每页显示个数
         strSortFiled: '',

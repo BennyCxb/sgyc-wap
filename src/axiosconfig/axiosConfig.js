@@ -43,6 +43,9 @@ AjaxPlugin.$http.interceptors.response.use(
       return res
     } else {
       _myThis.$vux.toast.text(res.data.message)
+      if (res.data.status === 401) {
+        window.location.hash = '#/Login'
+      }
     }
   },
   err => {

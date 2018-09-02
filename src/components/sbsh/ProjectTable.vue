@@ -43,7 +43,7 @@
               <!--<x-input v-model="value" placeholder="项目名称"></x-input>-->
             <!--</group>-->
             <search
-              v-model="form.FBillNo"
+              v-model="form.FPorjectName"
               position="absolute"
               auto-scroll-to-top
               top="46px"
