@@ -3,16 +3,13 @@
     <x-header>{{form.FAreaName}}</x-header>
     <scroller lock-x scrollbar-y height="-46px">
       <div>
-        <flow v-if="form.FStatus < 2">
+        <flow v-if="form.FStatus < 1">
           <flow-state state="1" title="未上报" is-done></flow-state>
           <flow-line :is-done="form.FStatus >= 1 ? true : false" :tip="form.FStatus >= 0 ? '待上报' : ''"></flow-line>
 
-          <flow-state state="2" title="待审核" :is-done="form.FStatus >= 1 ? true : false"></flow-state>
-          <flow-line :is-done="form.FStatus >= 2 ? true : false" :tip="form.FStatus >= 1 ? '审核中' : ''"></flow-line>
-
-          <flow-state state="3" title="审核完成":is-done="form.FStatus >= 2 ? true : false"></flow-state>
+          <flow-state state="2" title="已上报" :is-done="form.FStatus >= 1 ? true : false"></flow-state>
         </flow>
-        <flow v-else-if="form.FStatus == 2 && form.FCityChangeType != 3">
+        <flow v-else-if="form.FStatus >=1 && form.FCityChangeType != 3">
           <flow-state state="1" title="未启动" is-done></flow-state>
           <flow-line :is-done="progress >= 1 ? true : false" :tip="progress >= 0 ? '启动中' : ''"></flow-line>
 

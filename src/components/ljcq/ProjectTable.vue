@@ -91,7 +91,7 @@
               <td>{{item.FAgencyName}}</td>
               <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.FAreaName}}</td>
               <td>{{item.FDemonstration}}</td>
-              <td>{{item.FStatus}}</td>
+              <td>{{item.FStatus === '待整改' ? '待上报' : '已上报'}}</td>
             </tr>
             <tr v-if="!tableData.length">
               <td colspan="4">暂无数据</td>
