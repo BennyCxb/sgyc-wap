@@ -3,31 +3,31 @@
     <x-header>{{form.FAreaName}}</x-header>
     <scroller lock-x scrollbar-y height="-46px">
       <div>
-        <flow v-if="form.FStatus < 1">
-          <flow-state state="1" title="未上报" is-done></flow-state>
-          <flow-line :is-done="form.FStatus >= 1 ? true : false" :tip="form.FStatus >= 0 ? '待上报' : ''"></flow-line>
+        <!--<flow v-if="form.FStatus < 1">-->
+          <!--<flow-state state="1" title="未上报" is-done></flow-state>-->
+          <!--<flow-line :is-done="form.FStatus >= 1 ? true : false" :tip="form.FStatus >= 0 ? '待上报' : ''"></flow-line>-->
 
-          <flow-state state="2" title="已上报" :is-done="form.FStatus >= 1 ? true : false"></flow-state>
-        </flow>
-        <flow v-else-if="form.FStatus >=1 && form.FCityChangeType != 3">
+          <!--<flow-state state="2" title="已上报" :is-done="form.FStatus >= 1 ? true : false"></flow-state>-->
+        <!--</flow>-->
+        <flow v-if="form.FCityChangeType != 3">
           <flow-state state="1" title="未启动" is-done></flow-state>
-          <flow-line :is-done="progress >= 1 ? true : false" :tip="progress >= 0 ? '启动中' : ''"></flow-line>
+          <flow-line :is-done="form.FChangeStatus >= 1 ? true : false" :tip="form.FChangeStatus >= 0 ? '启动中' : ''"></flow-line>
 
-          <flow-state state="2" title="已启动" :is-done="progress >= 1 ? true : false"></flow-state>
-          <flow-line :is-done="progress >= 2 ? true : false" :tip="progress >= 1 ? '签约中' : ''"></flow-line>
+          <flow-state state="2" title="已启动" :is-done="form.FChangeStatus >= 1 ? true : false"></flow-state>
+          <flow-line :is-done="form.FChangeStatus >= 2 ? true : false" :tip="form.FChangeStatus >= 1 ? '签约中' : ''"></flow-line>
 
-          <flow-state state="3" title="已签约" :is-done="progress >= 2 ? true : false"></flow-state>
-          <flow-line :is-done="progress >= 3 ? true : false" :tip="progress >= 2 ? '拆除中' : ''"></flow-line>
+          <flow-state state="3" title="已签约" :is-done="form.FChangeStatus >= 2 ? true : false"></flow-state>
+          <flow-line :is-done="form.FChangeStatus >= 3 ? true : false" :tip="form.FChangeStatus >= 2 ? '拆除中' : ''"></flow-line>
 
-          <flow-state state="4" title="已拆除" :is-done="progress >= 3 ? true : false"></flow-state>
-          <flow-line :is-done="progress >= 4 ? true : false" :tip="progress >= 3 ? '开工中' : ''"></flow-line>
+          <flow-state state="4" title="已拆除" :is-done="form.FChangeStatus >= 3 ? true : false"></flow-state>
+          <flow-line :is-done="form.FChangeStatus >= 4 ? true : false" :tip="form.FChangeStatus >= 3 ? '开工中' : ''"></flow-line>
 
-          <flow-state state="5" title="已开工" :is-done="progress >= 4 ? true : false"></flow-state>
-          <flow-line :is-done="progress >= 5 ? true : false" :tip="progress >= 4 ? '完工中' : ''"></flow-line>
+          <flow-state state="5" title="已开工" :is-done="form.FChangeStatus >= 4 ? true : false"></flow-state>
+          <flow-line :is-done="form.FChangeStatus >= 5 ? true : false" :tip="form.FChangeStatus >= 4 ? '完工中' : ''"></flow-line>
 
-          <flow-state state="6" title="已完工":is-done="progress >= 5 ? true : false"></flow-state>
+          <flow-state state="6" title="已完工":is-done="form.FChangeStatus >= 5 ? true : false"></flow-state>
         </flow>
-        <flow v-else-if="form.FStatus == 2 && form.FCityChangeType == 3">
+        <flow v-else-if="form.FCityChangeType == 3">
           <flow-state state="1" title="企业进度未上报" is-done></flow-state>
           <flow-line :is-done="form.FStatus >= 1 ? true : false" :tip="form.FStatus >= 0 ? '待上报' : ''"></flow-line>
 
@@ -220,19 +220,19 @@ export default {
       }
       this.$api.ljcq.getProjectExtend12(params).then(res => {
         // console.log(res)
-        res.object.forEach((el, index) => {
-          if (index === 0 && el.FSubmitStatus === 2) {
-            self.progress = 1
-          } else if (index === 1 && el.FSubmitStatus === 2) {
-            self.progress = 2
-          } else if (index === 2 && el.FSubmitStatus === 2) {
-            self.progress = 3
-          } else if (index === 3 && el.FSubmitStatus === 2) {
-            self.progress = 4
-          } else if (index === 4 && el.FSubmitStatus === 2) {
-            self.progress = 5
-          }
-        })
+        // res.object.forEach((el, index) => {
+        //   if (index === 0 && el.FSubmitStatus === 2) {
+        //     self.progress = 1
+        //   } else if (index === 1 && el.FSubmitStatus === 2) {
+        //     self.progress = 2
+        //   } else if (index === 2 && el.FSubmitStatus === 2) {
+        //     self.progress = 3
+        //   } else if (index === 3 && el.FSubmitStatus === 2) {
+        //     self.progress = 4
+        //   } else if (index === 4 && el.FSubmitStatus === 2) {
+        //     self.progress = 5
+        //   }
+        // })
         // console.log(self.progress)
       }).catch(error => {
         console.log(error)
@@ -249,11 +249,11 @@ export default {
       this.$api.ljcq.getProjectExtend3(params).then(res => {
         // console.log(res)
         res.object.forEach((el) => {
-          if (el.FSubmitStatus === 1 && self.progress !== 2) {
-            self.progress = 1
-          } else if (el.FSubmitStatus === 2) {
-            self.progress = 2
-          }
+          // if (el.FSubmitStatus === 1 && self.progress !== 2) {
+          //   self.progress = 1
+          // } else if (el.FSubmitStatus === 2) {
+          //   self.progress = 2
+          // }
           let list = [
             {
               label: '企业名称',
