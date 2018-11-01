@@ -11,7 +11,9 @@
                 <datetime
                   v-model="form.FYear"
                   format="YYYY"
-                  title="年份"></datetime>
+                  @on-change="getStatistical"
+                  title="年份">
+                </datetime>
               </group>
               <box gap="10px 10px">
                 <x-button @click.native="resetSearch">重置</x-button>

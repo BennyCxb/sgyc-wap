@@ -49,7 +49,7 @@
           <cell title="责任领导" :value="form.FRespLeader"></cell>
           <cell title="联系人" :value="form.FLinkMan"></cell>
           <cell title="联系方式" :value="form.FLinkMobile"></cell>
-          <cell title="十大老旧工业区块改造示范点" :value="form.FDemonstration ? '是': '否'"></cell>
+          <cell title="十大老旧工业区块改造示范点" :value="form.FDemonstration == 1 ? '是': '否'"></cell>
           <cell title="区块情况简介" :value="form.FRemark" primary="content"></cell>
           <cell title="地图定位" :value="form.FGPS" primary="content"></cell>
         </group>

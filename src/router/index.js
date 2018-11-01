@@ -169,19 +169,19 @@ export default new Router({
     // 统计-进度
     {
       path: '/StatisticsProgress:fid-:sid-:tid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
     },
     {
       path: '/StatisticsProgress:fid-:sid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
     },
     {
       path: '/StatisticsProgress:fid-:btid',
-      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
     },
     {
       path: '/StatisticsProgress',
-      component: resolve => require(['../components/ljcq/StatisticsProgress2.vue'], resolve)
+      component: resolve => require(['../components/ljcq/StatisticsProgress.vue'], resolve)
     },
     // 统计-汇总
     {
