@@ -165,7 +165,6 @@ export default {
       })
     },
     getResult (val) {
-      console.log('on-change', val)
       this.results = val ? getResult(this.value) : []
     },
     // 从page组件传递过来的当前page
@@ -175,9 +174,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.params)
-    // let billtypeId = Number(this.$route.params.btid)
-    // this.form.FBillTypeID = billtypeId
     this.init()
   }
 }
